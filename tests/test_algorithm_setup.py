@@ -29,18 +29,32 @@ def _experiment_config() -> ExperimentConfig:
     return config
 
 
-def test_mappo_and_masac_construct_from_same_task(config):
+def test_mappo_and_masac_construct_from_same_task(config, tmp_path):
     model = MlpConfig.get_from_yaml()
     model.num_cells = [16, 16]
+
     critic = MlpConfig.get_from_yaml()
     critic.num_cells = [16, 16]
-    for algorithm in (MappoConfig.get_from_yaml(), MasacConfig.get_from_yaml()):
+
+    for algorithm in (
+        MappoConfig.get_from_yaml(),
+        MasacConfig.get_from_yaml(),
+    ):
+        experiment_config = _experiment_config()
+
+        # BenchMARL creates an experiment directory during construction.
+        # Tests must not write into the repository root.
+        experiment_config.save_folder = str(tmp_path)
+        experiment_config.loggers = []
+        experiment_config.create_json = False
+
         experiment = Experiment(
             task=ISASClass("SORTING", config),
             algorithm_config=algorithm,
             model_config=model,
             critic_model_config=critic,
             seed=config.seed,
-            config=_experiment_config(),
+            config=experiment_config,
         )
+
         experiment.close()
