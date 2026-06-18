@@ -218,3 +218,12 @@ The unused generic legacy Line/CA/eval-string process hierarchy was deliberately
 not copied into the GPU training core. Adding CA later should be done as a new
 fixed-dimension tensor dynamics module, not by restoring dynamic Python process
 objects.
+
+## GPU Docker and TensorBoard
+
+The repository includes a dependency-only GPU development image. Source files
+are bind-mounted, so ordinary code and configuration changes do not require an
+image rebuild.
+
+- Dockerfile: `docker/Dockerfile.gpu`
+- Complete server and TensorBoard guide: `docs/DOCKER_SERVER.md`

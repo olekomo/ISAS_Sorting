@@ -11,4 +11,3 @@ vis_results/
 wandb/
 *.mp4
 *.gif
-venv

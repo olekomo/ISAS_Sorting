@@ -1,0 +1,40 @@
+# GPU development/runtime image for the native ISAS BenchMARL simulator.
+#
+# Build once from the repository root:
+#   docker build -f docker/Dockerfile.gpu -t isas-benchmarl:gpu .
+#
+# Source code is mounted at /workspace at runtime.
+
+FROM pytorch/pytorch:2.10.0-cuda12.6-cudnn9-runtime
+
+ENV DEBIAN_FRONTEND=noninteractive     PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PIP_NO_CACHE_DIR=1     HYDRA_FULL_ERROR=1     MPLBACKEND=Agg     PYTHONPATH=/workspace/src     TENSORBOARD_PORT=6006
+
+RUN apt-get update &&     apt-get install -y --no-install-recommends         build-essential         ca-certificates         curl         ffmpeg         git         libgl1         libglib2.0-0         libgomp1         nano         python3-venv         vim &&     rm -rf /var/lib/apt/lists/*
+
+RUN python -m venv --system-site-packages /opt/venv
+
+ENV VIRTUAL_ENV=/opt/venv     PATH=/opt/venv/bin:${PATH}
+
+RUN python -m pip install --upgrade pip setuptools wheel &&     python -m pip install --no-cache-dir         tensordict==0.11.0         torchrl==0.11.1         benchmarl==1.5.2         "numpy>=1.26,<3"         "PyYAML>=6,<7"         "matplotlib>=3.8,<4"         "Pillow>=10,<13"         "imageio>=2.34,<3"         "imageio-ffmpeg>=0.5,<1"         "gymnasium>=1.0,<2"         "pettingzoo>=1.24,<2"         "tensorboard>=2.18,<3"         "pytest>=8,<10"         "ruff>=0.6,<1" &&     python -m pip check
+
+WORKDIR /workspace
+
+RUN python - <<'PY'
+import benchmarl
+import tensorboard
+import tensordict
+import torch
+import torchrl
+
+print("Dependency smoke test passed")
+print("python environment:", __import__("sys").executable)
+print("torch:", torch.__version__)
+print("torch CUDA build:", torch.version.cuda)
+print("torchrl:", torchrl.__version__)
+print("tensordict:", tensordict.__version__)
+print("benchmarl:", getattr(benchmarl, "__version__", "unknown"))
+print("tensorboard:", tensorboard.__version__)
+PY
+
+EXPOSE 6006
+CMD ["bash"]
