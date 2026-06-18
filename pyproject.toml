@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "isas-benchmarl-sim"
+version = "0.1.0"
+description = "Native batched PyTorch/TorchRL simulation for the ISAS multi-agent grid sorter"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.5",
+  "tensordict>=0.8,<0.12",
+  "torchrl>=0.8,<0.12",
+  "benchmarl>=1.5,<1.6",
+  "numpy>=1.26",
+  "PyYAML>=6.0",
+  "matplotlib>=3.8",
+  "Pillow>=10.0",
+  "imageio>=2.34",
+  "imageio-ffmpeg>=0.5",
+  "gymnasium>=1.0",
+  "pettingzoo>=1.24",
+  "tensorboard",
+  "wandb",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 92
+target-version = "py310"

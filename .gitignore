@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+artifacts/
+vis_results/
+wandb/
+*.mp4
+*.gif
+venv

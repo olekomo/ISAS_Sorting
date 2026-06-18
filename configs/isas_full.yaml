@@ -1,0 +1,62 @@
+grid_size: "full"
+seed: 12345
+T: 0.5
+obs_num_particles: 41
+num_particles: 29
+
+grid:
+  rows: 8
+  cols: 7
+  row_spacing: 20.0
+  col_spacing: 16.0
+  row_offset: 45.0
+  col_offsets: [17.5, 11.5, 21.5, 15.5, 9.5, 19.5, 13.5, 7.5]
+  array_end: 200.0
+  area_width: 125.0
+  default_birth_rate: 0.6
+area_width: 125.0
+
+t_activate: 1.0
+t_up: 1.0
+t_hit: 2.0
+t_down: 1.0
+t_reset: 4.0
+actor_length: 4.0
+actor_width: 9.0
+
+v0_x: 10.0
+simulation_noise: 0.0
+particle_spawn_x: -2.5
+particle_spawn_y_fraction: 0.5
+particle_spawn_x_stddev: 0.0
+particle_spawn_y_stddev_factor: 3.0
+particle_v0_x_stddev: 0.01
+particle_v0_y_mean: 0.0
+particle_v0_y_stddev: 0.1
+particle_birth_rate_stddev: 0.3
+particle_class_labels: [0, 1]
+particle_radius: 3.0
+particle_velocity_y_min: -1.0
+particle_velocity_y_max: 1.0
+
+dist_area_len: 18.0
+dist_area_width: 10.0
+dist_area_off_x: -6.0
+dist_area_off_y: 0.0
+
+frame_factor: 1
+max_fire_delay_steps: 8
+max_decision_steps: 1500
+time_out: 30
+
+render_mode: null
+save_animation: false
+animation_dir: "./vis_results/"
+agent_centric_obs: true
+continuous_actor_states: true
+normalize_rewards: false
+y_distance_weight: 100.0
+
+accept_cost: 0.3125
+reject_cost: 0.625
+disturbed_cost: 0.0625
