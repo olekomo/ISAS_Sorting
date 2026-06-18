@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspace/examples/train_benchmarl.py", line 187, in <module>
+    main()
+  File "/workspace/examples/train_benchmarl.py", line 146, in main
+    experiment = Experiment(
+                 ^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/benchmarl/experiment/experiment.py", line 371, in __init__
+    self._setup()
+  File "/opt/venv/lib/python3.12/site-packages/benchmarl/experiment/experiment.py", line 391, in _setup
+    self._setup_name()
+  File "/opt/venv/lib/python3.12/site-packages/benchmarl/experiment/experiment.py", line 607, in _setup_name
+    self.folder_name.mkdir(parents=False, exist_ok=True)
+  File "/usr/lib/python3.12/pathlib.py", line 1313, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [Errno 13] Permission denied: '/workspace/runs/mappo_aligned/mappo_sorting_mlp__5885970a_26_06_18-19_43_14'

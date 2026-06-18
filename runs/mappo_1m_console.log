@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/workspace/examples/train_benchmarl.py", line 187, in <module>
+    main()
+  File "/workspace/examples/train_benchmarl.py", line 141, in main
+    raise ValueError(
+ValueError: checkpoint interval (200000) must be a multiple of the configured collected frames per batch (6000).

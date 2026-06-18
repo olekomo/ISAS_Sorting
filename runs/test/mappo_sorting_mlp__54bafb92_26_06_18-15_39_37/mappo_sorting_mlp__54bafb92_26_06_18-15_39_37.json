@@ -1,0 +1,29 @@
+{
+    "isas": {
+        "sorting": {
+            "mappo": {
+                "seed_12345": {
+                    "absolute_metrics": {
+                        "actors_return": [
+                            1.0
+                        ],
+                        "return": [
+                            1.0
+                        ]
+                    },
+                    "step_0": {
+                        "step_count": 6144,
+                        "actors_return": [
+                            -0.8125,
+                            1.0
+                        ],
+                        "return": [
+                            -0.8125,
+                            1.0
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
